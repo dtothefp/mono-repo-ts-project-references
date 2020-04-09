@@ -1,0 +1,24 @@
+{
+  "name": "typescript-composite-lerna",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/**"
+  ],
+  "scripts": {
+    "build": "run-s clean build:cjs build:es",
+    "build:es": "tsc --build ./tsconfig.es.json",
+    "build:cjs": "tsc --build .",
+    "clean": "rm -rf packages/*/{es,cjs,*tsbuildinfo} && rm -rf packages/*/src/*.js",
+    "watch": "tsc --build --watch .",
+    "update:tsconfig.json": "ts-node scripts/update-package-tsconfig.ts",
+    "update:package.json": "ts-node scripts/update-package-json.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.0",
+    "lerna": "^3.16.4",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}
